@@ -8,7 +8,7 @@ table=(A B C D E F G H I J K L M N O P Q R S T U V W X Y Z a b c d e f g h i j k
 read text
 
 # breaking binary represantation of $text in to 6-bit blocks
-for line in $(echo "$text" | tr -d '\n' | xxd -b -g 20 | cut -d ' ' -f 2 | paste -s -d '' | fold -w 6 -s)
+for line in $(echo -n "$text" | xxd -b -g 0 | cut -d ' ' -f 2 | paste -s -d '' | fold -w 6 -s)
 do
   length=$(echo ${#line})
   let padding=6-$length
